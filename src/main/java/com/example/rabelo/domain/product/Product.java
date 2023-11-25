@@ -1,4 +1,4 @@
-package domain.product;
+package com.example.rabelo.domain.product;
 
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
@@ -17,11 +17,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor 
 @EqualsAndHashCode(of = "id")
-
 public class Product {
-	@Id @GeneratedValue(strategy =GenerationType.IDENTITY)
-	private String id;
-	private String name;
-	private Number prince_in_cents;
-	
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
+    private String name;
+    private Integer price_in_cents;
+
+    public Product(RequestProduct requestProduct) {
+        this.name = requestProduct.name();
+        this.price_in_cents = requestProduct.price_in_cents(); 
+    }
 }
